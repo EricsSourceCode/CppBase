@@ -50,22 +50,41 @@ last++;
 }
 
 
-/*
-
-void Uint16Buf::appendCharBuf( const CharBuf& charBuf )
+void Uint16Buf::appendU16Buf(
+                   const Uint16Buf& u16Buf )
 {
-const Int32 howMany = charBuf.getLast();
+const Int32 howMany = u16Buf.getLast();
 
 if( (last + howMany + 2) >= cArray.getSize() )
   increaseSize( howMany + (1024 * 16) );
 
 for( Int32 count = 0; count < howMany; count++ )
   {
-  cArray.setC( last, charBuf.getC( count ));
+  cArray.setVal( last, u16Buf.getVal( count ));
   last++;
   }
 }
-*/
+
+
+
+Int32 Uint16Buf::getField( Uint16Buf& toGet,
+                  const Int32 startAt,
+                  const Uint16 delimit ) const
+{
+toGet.clear();
+for( Int32 count = startAt; count < last; 
+                                       count++ )
+  {
+  Uint16 val = cArray.getVal( count );
+  if( val == delimit )
+    return count;
+
+  toGet.appendU16( val );
+  }
+
+return -1; 
+}
+
 
 
 
@@ -91,7 +110,7 @@ StIO::putLF();
 */
 
 
-
+/*
 void Uint16Buf::appendCharBuf(
                    const CharBuf& charBuf )
 {
@@ -106,10 +125,14 @@ for( Int32 count = 0; count < howMany; count++ )
   last++;
   }
 }
+*/
+
+
+
 
 
 /*
-
+======= Java.
 public class StrA
   {
   private final char[] values;
