@@ -1,4 +1,4 @@
-// Copyright Eric Chauvin 2022 - 2023.
+// Copyright Eric Chauvin 2022 - 2024.
 
 
 
@@ -17,6 +17,7 @@
 #include "../CppMem/ByteArray.h"
 #include "RangeC.h"
 #include "StIO.h"
+#include "CharBuf.h"
 
 
 
@@ -135,6 +136,17 @@ class CircleBuf
       }
     }
 
+
+
+  inline void addCharBuf( const CharBuf& toAdd )
+    {
+    const Int32 lastIn = toAdd.getLast();
+    for( Int32 count = 0; count < lastIn;
+                                      count++ )
+      {
+      addU8( toAdd.getU8( count ));
+      }
+    }
 
 
   };

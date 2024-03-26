@@ -72,7 +72,7 @@ Int32 Uint16Buf::getField( Uint16Buf& toGet,
                   const Uint16 delimit ) const
 {
 toGet.clear();
-for( Int32 count = startAt; count < last; 
+for( Int32 count = startAt; count < last;
                                        count++ )
   {
   Uint16 val = cArray.getVal( count );
@@ -82,7 +82,7 @@ for( Int32 count = startAt; count < last;
   toGet.appendU16( val );
   }
 
-return -1; 
+return -1;
 }
 
 
