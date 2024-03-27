@@ -659,11 +659,28 @@ StIO::putLF();
 
 
 
+
+void CharBuf::showAscii( void ) const
+{
+const Int32 max = getLast();
+for( Int32 count = 0; count < max; count++ )
+  {
+  Uint8 oneByte = getU8( count );
+  if( (oneByte < 127) && (oneByte >= 32))
+    {
+    char showC = oneByte & 0x7F;
+    StIO::putChar( showC );
+    }
+  }
+
+StIO::putLF();
+}
+
+
+
 // From a string like this:
 // const char* theBytes =
 // "b4 bb 49 8f 82 79 30 3d 98 08 36 39"
-
-
 
 
 void CharBuf::setFromHexTo256(

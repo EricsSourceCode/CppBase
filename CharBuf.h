@@ -159,6 +159,7 @@ class CharBuf
   bool isEqual( const CharBuf& toCheck ) const;
   void reverse( void );
   void showHex( void ) const;
+  void showAscii( void ) const;
 
   inline void fillBytes( const Uint8 toSet,
                          const Int32 howMany )
