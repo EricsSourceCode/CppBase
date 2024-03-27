@@ -666,6 +666,12 @@ const Int32 max = getLast();
 for( Int32 count = 0; count < max; count++ )
   {
   Uint8 oneByte = getU8( count );
+  if( oneByte == 10 ) // Line Feed.
+    {
+    StIO::putLF();
+    continue;
+    }
+
   if( (oneByte < 127) && (oneByte >= 32))
     {
     char showC = oneByte & 0x7F;
@@ -723,3 +729,6 @@ for( Int32 count = 0; (count + 1) < maxC;
   appendU8( oneByte );
   }
 }
+
+
+

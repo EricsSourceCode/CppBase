@@ -30,12 +30,12 @@ class CircleBuf
   Int32 last = 0;
 
   public:
-  inline CircleBuf( void )
+  CircleBuf( void )
     {
     setSize( 16 );
     }
 
-  inline CircleBuf( const CircleBuf& in )
+  CircleBuf( const CircleBuf& in )
     {
     if( in.testForCopy )
       return;
@@ -44,17 +44,17 @@ class CircleBuf
     }
 
 
-  inline ~CircleBuf( void )
+  ~CircleBuf( void )
     {
     }
 
 
-  inline Int32 getSize( void ) const
+  Int32 getSize( void ) const
     {
     return cArray.getSize();
     }
 
-  inline void setSize( const Int32 howBig )
+  void setSize( const Int32 howBig )
     {
     first = 0;
     last = 0;
@@ -71,14 +71,11 @@ class CircleBuf
     }
 
 
-  inline char getChar( void )
+  char getChar( void )
     {
     // Call isEmpty() before getting something.
     if( first == last )
-      {
-      StIO::putS( "CircleBuf is empty exception." );
-      throw "CircleBuf is empty.";
-      }
+      throw "CircleBuf.getChar() is empty.";
 
     char result = cArray.getC( first );
     first++;
@@ -89,13 +86,12 @@ class CircleBuf
     }
 
 
-  inline Uint8 getU8( void )
+  Uint8 getU8( void )
     {
     // Call isEmpty() before getting something.
     if( first == last )
       {
-      StIO::putS( "CircleBuf is empty exception." );
-      throw "CircleBuf is empty.";
+      throw "CircleBuf.getU8() is empty.";
       }
 
     Uint8 result = cArray.getU8( first );
@@ -107,7 +103,7 @@ class CircleBuf
     }
 
 
-  inline void addChar( const char toAdd )
+  void addChar( const char toAdd )
     {
     cArray.setC( last, toAdd );
     last++;
@@ -115,14 +111,12 @@ class CircleBuf
       last = 0;
 
     if( last == first )
-      {
-      StIO::putS( "CircleBuf overflowed." );
       throw "CircleBuf overflowed.";
-      }
+
     }
 
 
-  inline void addU8( const Uint8 toAdd )
+  void addU8( const Uint8 toAdd )
     {
     cArray.setU8( last, toAdd );
     last++;
@@ -130,15 +124,13 @@ class CircleBuf
       last = 0;
 
     if( last == first )
-      {
-      StIO::putS( "CircleBuf overflowed." );
-      throw "CircleBuf overflowed.";
-      }
+      throw "CircleBuf.addU8() overflowed.";
+
     }
 
 
 
-  inline void addCharBuf( const CharBuf& toAdd )
+  void addCharBuf( const CharBuf& toAdd )
     {
     const Int32 lastIn = toAdd.getLast();
     for( Int32 count = 0; count < lastIn;
@@ -146,6 +138,22 @@ class CircleBuf
       {
       addU8( toAdd.getU8( count ));
       }
+    }
+
+
+
+  Int32 getHowMany( void )
+    {
+    if( last == first )
+      return 0;
+
+    if( last > first )
+      return last - first;
+
+    // last is less than first.
+    Int32 result = last + getSize();
+    result -= first;
+    return result;
     }
 
 
