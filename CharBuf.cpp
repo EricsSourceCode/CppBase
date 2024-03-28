@@ -732,3 +732,49 @@ for( Int32 count = 0; (count + 1) < maxC;
 
 
 
+bool CharBuf::searchMatches(
+                      const Int32 position,
+                      const CharBuf& toFind )
+{
+const Int32 findLength = toFind.getLast();
+if( findLength < 1 )
+  return false;
+
+if( (position + findLength - 1) >= last )
+  return false;
+
+for( Int32 count = 0; count < findLength;
+                                     count++ )
+  {
+  char asciiChar = cArray.getC(
+                           position + count );
+  asciiChar = toLower( asciiChar );
+
+  if( asciiChar != toLower(
+                        toFind.getC( count )) )
+    return false;
+
+  }
+
+return true;
+}
+
+
+
+Int32 CharBuf::findText( const CharBuf& toFind,
+                         const Int32 startAt )
+{
+const Int32 max = last;
+
+if( startAt >= max )
+  return -1;
+
+for( Int32 count = startAt; count < max; count++ )
+  {
+  if( searchMatches( count, toFind ))
+    return count;
+
+  }
+
+return -1;
+}

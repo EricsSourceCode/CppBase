@@ -186,5 +186,24 @@ class CharBuf
       }
     }
 
+  bool searchMatches( const Int32 position,
+                      const CharBuf& toFind );
+
+  Int32 findText( const CharBuf& toFind,
+                  const Int32 startAt );
+
+  inline char toLower( const char fromChar )
+    {
+    if( (fromChar < 'A') || (fromChar > 'Z') )
+      return fromChar;
+
+    // 'A' is 65 and 'a' is 97.
+    // A lower case letter is 32 plus the
+    // upper case letter.  So that is the
+    // fifth bit.
+    const char fifth = 'a' - 'A';
+    return fromChar + fifth;
+    // Or xor that fifth bit.
+    }
 
   };

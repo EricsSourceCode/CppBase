@@ -129,6 +129,19 @@ class CircleBuf
     }
 
 
+  void appendToCharBuf( CharBuf& toGet,
+                      const Int32 howMany )
+    {
+    for( Int32 count = 0; count < howMany;
+                                     count++ )
+      {
+      if( isEmpty())
+        break;
+
+      toGet.appendU8( getU8());
+      }
+    }
+
 
   void addCharBuf( const CharBuf& toAdd )
     {
