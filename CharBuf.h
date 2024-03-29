@@ -194,7 +194,8 @@ class CharBuf
 
   inline char toLower( const char fromChar )
     {
-    if( (fromChar < 'A') || (fromChar > 'Z') )
+    if( !((fromChar >= 'A') &&
+                          (fromChar <= 'Z')) )
       return fromChar;
 
     // 'A' is 65 and 'a' is 97.
@@ -204,6 +205,9 @@ class CharBuf
     const char fifth = 'a' - 'A';
     return fromChar + fifth;
     // Or xor that fifth bit.
+    // return fromChar xor fifth;
     }
+
+  bool contains( const CharBuf& toFind );
 
   };

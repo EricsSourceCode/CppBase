@@ -778,3 +778,12 @@ for( Int32 count = startAt; count < max; count++ )
 
 return -1;
 }
+
+
+bool CharBuf::contains( const CharBuf& toFind )
+{
+if( findText( toFind, 0 ) >= 0 )
+  return true;
+
+return false;
+}
