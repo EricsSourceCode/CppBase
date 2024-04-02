@@ -97,6 +97,7 @@ class Uint16Buf
   Int32 getField( Uint16Buf& toGet,
                   const Int32 startAt,
                   const Uint16 delimit ) const;
-
+  void showAscii( void ) const;
+  void toCharBuf( CharBuf& toGet ) const;
 
   };
