@@ -1,0 +1,33 @@
+buildfile	\Eric\Main\AINews\BuildProj.bat
+executablefile	\Eric\Main\AINews\ainews.exe
+projectdirectory	\Eric\Main\AINews
+recentfile1	\Eric\Main\AINews\MainApp.h
+recentfile2	\Eric\Main\Docs\Notes.txt
+recentfile3	\Eric\Main\AINews\MainApp.cpp
+recentfile4	\Eric\Main\AINews\URLFileDct.h
+recentfile5	\Eric\Main\AINews\URLFileDct.cpp
+recentfile6	\Eric\Main\AINews\URLFileDctLine.h
+recentfile7	\Eric\Main\AINews\URLFileDctLine.cpp
+recentfile8	\Eric\Main\AINews\URLFile.h
+recentfile9	\Eric\Main\AINews\URLFile.cpp
+recentfile10	
+recentfile11	
+recentfile12	
+recentfile13	
+recentfile14	
+recentfile15	
+recentfile16	
+recentfile17	
+recentfile18	
+recentfile19	
+recentfile20	
+recentfile21	
+recentfile22	
+recentfile23	
+recentfile24	
+recentfile25	
+recentfile26	
+recentfile27	
+recentfile28	
+recentfile29	
+recentfile30	
