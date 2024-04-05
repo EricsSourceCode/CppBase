@@ -75,10 +75,12 @@ toGet.clear();
 if( startAt < 0 )
   return -1;
 
-if( startAt >= last )
+const Int32 max = last;
+
+if( startAt >= max )
   return -1;
 
-for( Int32 count = startAt; count < last;
+for( Int32 count = startAt; count < max;
                                        count++ )
   {
   Uint16 val = cArray.getVal( count );
@@ -132,3 +134,22 @@ for( Int32 count = 0; count < max; count++ )
 }
 
 
+
+
+bool Uint16Buf::isEqual(
+               const Uint16Buf& toCheck ) const
+{
+if( last != toCheck.last )
+  return false;
+
+const Int32 max = last;
+for( Int32 count = 0; count < max; count++ )
+  {
+  if( cArray.getVal( count ) !=
+               toCheck.cArray.getVal( count ) )
+    return false;
+
+  }
+
+return true;
+}

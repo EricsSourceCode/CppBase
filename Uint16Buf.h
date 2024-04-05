@@ -99,5 +99,6 @@ class Uint16Buf
                   const Uint16 delimit ) const;
   void showAscii( void ) const;
   void toCharBuf( CharBuf& toGet ) const;
+  bool isEqual( const Uint16Buf& toCheck ) const;
 
   };
