@@ -1,4 +1,4 @@
-// Copyright Eric Chauvin 2022 - 2023.
+// Copyright Eric Chauvin 2022 - 2024.
 
 
 
@@ -733,8 +733,8 @@ for( Int32 count = 0; (count + 1) < maxC;
 
 
 bool CharBuf::searchMatches(
-                      const Int32 position,
-                      const CharBuf& toFind )
+                  const Int32 position,
+                  const CharBuf& toFind ) const
 {
 const Int32 findLength = toFind.getLast();
 if( findLength < 1 )
@@ -762,7 +762,7 @@ return true;
 
 
 Int32 CharBuf::findText( const CharBuf& toFind,
-                         const Int32 startAt )
+                    const Int32 startAt ) const
 {
 const Int32 max = last;
 

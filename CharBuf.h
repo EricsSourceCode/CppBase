@@ -187,12 +187,13 @@ class CharBuf
     }
 
   bool searchMatches( const Int32 position,
-                      const CharBuf& toFind );
+                  const CharBuf& toFind ) const;
 
   Int32 findText( const CharBuf& toFind,
-                  const Int32 startAt );
+                  const Int32 startAt ) const;
 
-  inline char toLower( const char fromChar )
+  static inline char toLower(
+                       const char fromChar )
     {
     if( !((fromChar >= 'A') &&
                           (fromChar <= 'Z')) )

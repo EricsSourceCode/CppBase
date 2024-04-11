@@ -1,4 +1,4 @@
-// Copyright Eric Chauvin 2022 - 2023.
+// Copyright Eric Chauvin 2022 - 2024.
 
 
 
@@ -21,7 +21,7 @@ class ByteHex
 
   public:
 
-  static inline char intToChar( Int32 c )
+  static char intToChar( Int32 c )
     {
     switch( c )
       {
@@ -47,7 +47,7 @@ class ByteHex
     }
 
 
-  static inline char valToChar( Uint8 c )
+  static char valToChar( Uint8 c )
     {
     switch( c )
       {
@@ -72,18 +72,18 @@ class ByteHex
     return '?';
     }
 
-  static inline char getRightChar( Uint8 theByte )
+  static char getRightChar( Uint8 theByte )
     {
     return valToChar( theByte & 0xF );
     }
 
-  static inline char getLeftChar( Uint8 theByte )
+  static char getLeftChar( Uint8 theByte )
     {
     return valToChar( (theByte >> 4) & 0xF );
     }
 
 
-  static inline Uint8 charToU8( const char c )
+  static Uint8 charToU8( const char c )
     {
     switch( c )
       {
@@ -116,7 +116,7 @@ class ByteHex
     return 128;
     }
 
-  static inline bool isValidChar( const char c )
+  static bool isValidChar( const char c )
     {
     switch( c )
       {
@@ -150,7 +150,7 @@ class ByteHex
     }
 
 
-  static inline void showByte( const Uint8 val )
+  static void showByte( const Uint8 val )
     {
     char c = getLeftChar( val );
     StIO::putChar( c );
@@ -158,7 +158,7 @@ class ByteHex
     StIO::putChar( c );
     }
 
-  static inline void showUint32( const Uint32 val )
+  static void showUint32( const Uint32 val )
     {
     Uint8 aByte = (val >> 24) & 0xFF;
     showByte( aByte );
@@ -172,5 +172,37 @@ class ByteHex
     aByte = val & 0xFF;
     showByte( aByte );
     }
+
+
+  static Int32 charBufToInt32( 
+                         const CharBuf& inBuf )
+    {
+    StIO::putS( "Hex buf:" );
+    inBuf.showAscii();
+    StIO::putLF();
+
+    Int32 result = 0;
+    const Int32 base = 16;
+    Int32 positionBase = 1;
+    const Int32 max = inBuf.getLast();
+    for( Int32 count = max - 1; count >= 0;
+                                     count-- )
+      {
+      Int32 digit = charToU8(
+                  inBuf.getC( count )) & 0xFF;
+
+      digit = digit * positionBase;
+      result += digit;
+      positionBase = positionBase * base;
+      }
+
+    StIO::printF( "Hex value: " );
+    showUint32( result & 0xFFFFFFF );
+    StIO::putLF();
+
+
+    return result;
+    }
+
 
   };
