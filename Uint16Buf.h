@@ -101,4 +101,30 @@ class Uint16Buf
   void toCharBuf( CharBuf& toGet ) const;
   bool isEqual( const Uint16Buf& toCheck ) const;
 
+  static inline Uint16 toLower(
+                       const Uint16 fromVal )
+    {
+    if( !((fromVal >= 'A') &&
+                          (fromVal <= 'Z')) )
+      return fromVal;
+
+    // 'A' is 65 and 'a' is 97.
+    // A lower case letter is 32 plus the
+    // upper case letter.  So that is the
+    // fifth bit.
+    const Uint16 fifth = 'a' - 'A';
+    return fromVal + fifth;
+    // Or xor that fifth bit.
+    // return fromChar xor fifth;
+    }
+
+  bool searchMatches(
+                 const Int32 position,
+                 const Uint16Buf& toFind ) const;
+
+  Int32 findText( const Uint16Buf& toFind,
+                  const Int32 startAt ) const;
+
+  void setFromCharPoint( const char* pStr );
+
   };

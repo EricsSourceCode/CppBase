@@ -153,3 +153,112 @@ for( Int32 count = 0; count < max; count++ )
 
 return true;
 }
+
+
+
+
+bool Uint16Buf::searchMatches(
+                  const Int32 position,
+                  const Uint16Buf& toFind ) const
+{
+const Int32 findLength = toFind.getLast();
+if( findLength < 1 )
+  return false;
+
+if( (position + findLength - 1) >= last )
+  return false;
+
+for( Int32 count = 0; count < findLength;
+                                     count++ )
+  {
+  Uint16 val = cArray.getVal(
+                           position + count );
+  val = toLower( val );
+
+  if( val != toFind.getVal( count ) )
+    return false;
+
+  }
+
+return true;
+}
+
+
+
+Int32 Uint16Buf::findText(
+                    const Uint16Buf& toFind,
+                    const Int32 startAt ) const
+{
+const Int32 max = last;
+
+if( startAt >= max )
+  return -1;
+
+const Int32 toFindLen = toFind.getLast();
+Uint16Buf toFindLow;
+for( Int32 count = startAt; count < toFindLen;
+                                       count++ )
+  {
+  toFindLow.appendU16( toLower(
+                     toFind.getVal( count )) );
+  }
+
+for( Int32 count = startAt; count < max; count++ )
+  {
+  if( searchMatches( count, toFindLow ))
+    return count;
+
+  }
+
+return -1;
+}
+
+#include "../CppMem/MemoryWarnTop.h"
+
+
+void Uint16Buf::setFromCharPoint(
+                         const char* pStr )
+{
+last = 0;
+if( pStr == nullptr )
+  return;
+
+const char* sizePoint = pStr;
+
+Int32 strSize = 0;
+
+// Make it a reasonable loop count so it
+// doesn't go forever if it never finds null.
+
+bool foundNull = false;
+for( Int32 count = 0; count < 5000; count++ )
+  {
+  char c = *sizePoint;
+  if( c == 0 )
+    {
+    foundNull = true;
+    break;
+    }
+
+  sizePoint++;
+  strSize++;
+  }
+
+if( !foundNull )
+  return;
+
+const Int32 max = strSize;
+
+setSize( max + 1 );
+
+for( Int32 count = 0; count < max; count++ )
+  {
+  char c = *pStr;
+  cArray.setVal( last, c & 0x7F  );
+  last++;
+  pStr++;
+  }
+}
+
+
+#include "../CppMem/MemoryWarnBottom.h"

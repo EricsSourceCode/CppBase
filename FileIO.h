@@ -25,14 +25,14 @@ class FileIO
   private:
 
   public:
-  static bool exists( const char* fileName );
-  static bool writeAll( const char* fileName,
+  static bool exists( const CharBuf& fileName );
+  static bool writeAll( const CharBuf& fileName,
                         const CharBuf& cBuf );
 
-  static bool readAll( const char* fileName,
+  static bool readAll( const CharBuf& fileName,
                        CharBuf& cBuf );
 
-  static bool copy( const char* fromName,
-                    const char* toName );
+  static bool copy( const CharBuf& fromName,
+                    const CharBuf& );
 
   };

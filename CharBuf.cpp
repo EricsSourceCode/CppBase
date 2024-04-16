@@ -750,8 +750,7 @@ for( Int32 count = 0; count < findLength;
                            position + count );
   asciiChar = toLower( asciiChar );
 
-  if( asciiChar != toLower(
-                        toFind.getC( count )) )
+  if( asciiChar != toFind.getC( count ) )
     return false;
 
   }
@@ -769,9 +768,18 @@ const Int32 max = last;
 if( startAt >= max )
   return -1;
 
+const Int32 toFindLen = toFind.getLast();
+CharBuf toFindLow;
+for( Int32 count = startAt; count < toFindLen;
+                                         count++ )
+  {
+  toFindLow.appendChar( toLower(
+                     toFind.getC( count )) );
+  }
+
 for( Int32 count = startAt; count < max; count++ )
   {
-  if( searchMatches( count, toFind ))
+  if( searchMatches( count, toFindLow ))
     return count;
 
   }

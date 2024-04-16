@@ -22,7 +22,8 @@
 #include <fstream>
 
 
-bool FileIO::writeAll( const char* fileName,
+
+bool FileIO::writeAll( const CharBuf& fileName,
                        const CharBuf& cBuf )
 {
 try
@@ -32,7 +33,10 @@ const Int32 howMany = cBuf.getLast();
 OpenCharArray writeAr;
 cBuf.copyToOpenCharArrayNoNull( writeAr );
 
-std::ofstream outFile( fileName,
+OpenCharArray fileAr;
+fileName.copyToOpenCharArrayNull( fileAr );
+
+std::ofstream outFile( fileAr.cArray,
                        std::ofstream::binary );
 
 outFile.write( writeAr.cArray,
@@ -61,12 +65,16 @@ catch( ... )
 
 
 
-bool FileIO::readAll( const char* fileName,
+bool FileIO::readAll( const CharBuf& fileName,
                       CharBuf& cBuf )
 {
 try
 {
-std::ifstream inFile( fileName,
+
+OpenCharArray fileAr;
+fileName.copyToOpenCharArrayNull( fileAr );
+
+std::ifstream inFile( fileAr.cArray,
                       std::ifstream::binary );
 
 inFile.seekg( 0, inFile.end );
@@ -113,11 +121,14 @@ catch( ... )
 
 
 
-bool FileIO::exists( const char* fileName )
+bool FileIO::exists( const CharBuf& fileName )
 {
 try
 {
-std::ifstream inFile( fileName,
+OpenCharArray fileAr;
+fileName.copyToOpenCharArrayNull( fileAr );
+
+std::ifstream inFile( fileAr.cArray,
                       std::ifstream::binary );
 
 return inFile.good();
@@ -134,8 +145,8 @@ catch( ... )
 }
 
 
-bool FileIO::copy( const char* fromName,
-                    const char* toName )
+bool FileIO::copy( const CharBuf& fromName,
+                   const CharBuf& toName )
 {
 CharBuf cBuf;
 if( !readAll( fromName, cBuf ))

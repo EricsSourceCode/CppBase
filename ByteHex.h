@@ -174,7 +174,7 @@ class ByteHex
     }
 
 
-  static Int32 charBufToInt32( 
+  static Int32 charBufToInt32(
                          const CharBuf& inBuf )
     {
     StIO::putS( "Hex buf:" );
