@@ -177,9 +177,9 @@ class ByteHex
   static Int32 charBufToInt32(
                          const CharBuf& inBuf )
     {
-    StIO::putS( "Hex buf:" );
-    inBuf.showAscii();
-    StIO::putLF();
+    // StIO::putS( "Hex buf:" );
+    // inBuf.showAscii();
+    // StIO::putLF();
 
     Int32 result = 0;
     const Int32 base = 16;
@@ -196,9 +196,9 @@ class ByteHex
       positionBase = positionBase * base;
       }
 
-    StIO::printF( "Hex value: " );
-    showUint32( result & 0xFFFFFFF );
-    StIO::putLF();
+    // StIO::printF( "Hex value: " );
+    // showUint32( result & 0xFFFFFFF );
+    // StIO::putLF();
 
 
     return result;
