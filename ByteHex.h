@@ -177,14 +177,11 @@ class ByteHex
   static Int32 charBufToInt32(
                          const CharBuf& inBuf )
     {
-    // StIO::putS( "Hex buf:" );
-    // inBuf.showAscii();
-    // StIO::putLF();
-
     Int32 result = 0;
     const Int32 base = 16;
     Int32 positionBase = 1;
     const Int32 max = inBuf.getLast();
+
     for( Int32 count = max - 1; count >= 0;
                                      count-- )
       {
@@ -193,13 +190,15 @@ class ByteHex
 
       digit = digit * positionBase;
       result += digit;
+
       positionBase = positionBase * base;
+
+      // Don't multiply too big of a
+      // positionBase.
+      if( positionBase > 0x3FFFFFF )
+        break;
+
       }
-
-    // StIO::printF( "Hex value: " );
-    // showUint32( result & 0xFFFFFFF );
-    // StIO::putLF();
-
 
     return result;
     }
