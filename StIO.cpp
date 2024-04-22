@@ -130,6 +130,11 @@ printf( "%llu", x );
 }
 
 
+void StIO::printFlt64( const Float64 x )
+{
+printf( "%1.4f", x );
+}
+
 
 void StIO::printFX( const Uint32 x )
 {

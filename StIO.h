@@ -35,6 +35,7 @@ class StIO
 
   static void putWChar( const Uint16 c );
   static void putCharBuf( const CharBuf& charBuf );
+  static void printFlt64( const Float64 x );
 
   // bool checkKey( void );
 
