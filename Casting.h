@@ -1,4 +1,4 @@
-// Copyright Eric Chauvin 2022 - 2023.
+// Copyright Eric Chauvin 2022 - 2024.
 
 
 
@@ -10,6 +10,10 @@
 
 
 #pragma once
+
+
+// static_cast is done at compile time.
+
 
 
 // If I have to cast something to a different
@@ -24,10 +28,6 @@
 
 #include "BasicTypes.h"
 
-
-
-// static_cast is not being used.
-// Int32 result = static_cast<Int32>( x );
 
 
 
@@ -188,5 +188,20 @@ class Casting
     Uint32 result = x & 0xFF;
     return result;
     }
+
+
+  inline static Float32 float64To32( Float64 x )
+    {
+    Float32 result = static_cast<Float32>( x );
+    return result;
+    }
+
+
+  inline static Float64 float32To64( Float32 x )
+    {
+    Float64 result = static_cast<Float64>( x );
+    return result;
+    }
+
 
   };
