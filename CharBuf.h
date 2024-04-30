@@ -209,6 +209,6 @@ class CharBuf
     // return fromChar xor fifth;
     }
 
-  bool contains( const CharBuf& toFind );
+  bool contains( const CharBuf& toFind ) const;
 
   };
