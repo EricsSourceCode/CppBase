@@ -1,6 +1,8 @@
 // Copyright Eric Chauvin 2022 - 2024.
 
 
+// Change a lot of these to static_cast.
+
 
 // This is licensed under the GNU General
 // Public License (GPL).  It is the
@@ -186,20 +188,6 @@ class Casting
   inline static Uint32 charToU32( char x )
     {
     Uint32 result = x & 0xFF;
-    return result;
-    }
-
-
-  inline static Float32 float64To32( Float64 x )
-    {
-    Float32 result = static_cast<Float32>( x );
-    return result;
-    }
-
-
-  inline static Float64 float32To64( Float32 x )
-    {
-    Float64 result = static_cast<Float64>( x );
     return result;
     }
 
