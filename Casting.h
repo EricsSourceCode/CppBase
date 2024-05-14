@@ -1,7 +1,8 @@
 // Copyright Eric Chauvin 2022 - 2024.
 
 
-// Change a lot of these to static_cast.
+
+// Use static_cast if that works right.
 
 
 // This is licensed under the GNU General
@@ -12,9 +13,6 @@
 
 
 #pragma once
-
-
-// static_cast is done at compile time.
 
 
 
