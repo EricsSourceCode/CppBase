@@ -54,6 +54,3 @@ lastNode is what?
 // Int32 where = indexOfChar( c );
 }
 */
-
-
-

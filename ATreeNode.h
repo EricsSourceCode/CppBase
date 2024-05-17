@@ -18,6 +18,10 @@
 #include "../CppMem/Int32Array.h"
 
 
+// This uses characters 0 through 127.
+// Chars below 32 (space) are for markers.
+// Need an end of string marker.  So zero.
+
 
 
 class ATreeNode
@@ -25,7 +29,7 @@ class ATreeNode
   private:
   bool testForCopy = false;
   Int32Array indexAr;
-  const Int32 maxArray = 127 - 32;
+  const Int32 maxArray = 127;
 
   public:
   ATreeNode( void )
@@ -45,14 +49,6 @@ class ATreeNode
     {
     }
 
-  inline Int32 indexOfChar( const char c ) const
-    {
-    RangeC::test2( c, 32, 126,
-             "ATreeNode.indexOfChar range." );
-
-    // So a space is at zero.
-    return c - 32;
-    }
 
   void clear( void )
     {
