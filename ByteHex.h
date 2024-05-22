@@ -41,6 +41,7 @@ class ByteHex
       case 13: return 'D';
       case 14: return 'E';
       case 15: return 'F';
+      default: return '?';
       }
 
     return '?';
@@ -67,6 +68,7 @@ class ByteHex
       case 13: return 'D';
       case 14: return 'E';
       case 15: return 'F';
+      default: return '?';
       }
 
     return '?';
@@ -111,6 +113,8 @@ class ByteHex
       case 'D': return 13;
       case 'E': return 14;
       case 'F': return 15;
+
+      default: return 128;
       }
 
     return 128;
@@ -144,6 +148,8 @@ class ByteHex
       case 'D': return true;
       case 'E': return true;
       case 'F': return true;
+
+      default: return false;
       }
 
     return false;
