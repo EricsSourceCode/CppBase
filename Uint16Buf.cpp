@@ -66,6 +66,23 @@ for( Int32 count = 0; count < howMany; count++ )
 }
 
 
+=====
+void Uint16Buf::appendCharBuf(
+                   const CharBuf& cBuf )
+{
+const Int32 howMany = cBuf.getLast();
+
+if( (last + howMany + 2) >= cArray.getSize() )
+  increaseSize( howMany + (1024 * 16) );
+
+for( Int32 count = 0; count < howMany; count++ )
+  {
+  cArray.setVal( last, cBuf.getVal( count ));
+  last++;
+  }
+}
+
+
 
 Int32 Uint16Buf::getField( Uint16Buf& toGet,
                   const Int32 startAt,

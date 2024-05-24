@@ -94,6 +94,7 @@ class Uint16Buf
   void copy( const Uint16Buf& toCopy );
 
   void appendU16Buf( const Uint16Buf& u16Buf );
+  void appendCharBuf( const CharBuf& cBuf );
   Int32 getField( Uint16Buf& toGet,
                   const Int32 startAt,
                   const Uint16 delimit ) const;
