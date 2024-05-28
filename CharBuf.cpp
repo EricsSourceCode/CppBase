@@ -202,7 +202,7 @@ void CharBuf::appendChar( const char toSet )
 // It's good if you can set the size ahead
 // of time.
 if( (last + 1) >= cArray.getSize() )
-  increaseSize( 1024 * 64 );
+  increaseSize( 1024 * 16 );
 
 cArray.setC( last, toSet );
 last++;
@@ -214,7 +214,7 @@ void CharBuf::appendU8( const Uint32 toSet )
 // It's good if you can set the size ahead
 // of time.
 if( (last + 1) >= cArray.getSize() )
-  increaseSize( 1024 * 64 );
+  increaseSize( 1024 * 16 );
 
 cArray.setU8( last, (toSet & 0xFF) );
 last++;
@@ -224,7 +224,7 @@ last++;
 void CharBuf::appendU16( const Uint32 toSet )
 {
 if( (last + 1) >= cArray.getSize() )
-  increaseSize( 1024 * 64 );
+  increaseSize( 1024 * 16 );
 
 cArray.setU8( last, ((toSet >> 8) & 0xFF) );
 last++;
@@ -788,7 +788,7 @@ return -1;
 }
 
 
-bool CharBuf::contains( 
+bool CharBuf::contains(
                    const CharBuf& toFind ) const
 {
 if( findText( toFind, 0 ) >= 0 )

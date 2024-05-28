@@ -66,7 +66,7 @@ for( Int32 count = 0; count < howMany; count++ )
 }
 
 
-=====
+
 void Uint16Buf::appendCharBuf(
                    const CharBuf& cBuf )
 {
@@ -77,7 +77,7 @@ if( (last + howMany + 2) >= cArray.getSize() )
 
 for( Int32 count = 0; count < howMany; count++ )
   {
-  cArray.setVal( last, cBuf.getVal( count ));
+  cArray.setVal( last, cBuf.getU8( count ));
   last++;
   }
 }
@@ -105,6 +105,34 @@ for( Int32 count = startAt; count < max;
     return count;
 
   toGet.appendU16( val );
+  }
+
+return -1;
+}
+
+
+
+Int32 Uint16Buf::getFieldC( CharBuf& toGet,
+                  const Int32 startAt,
+                  const Uint16 delimit ) const
+{
+toGet.clear();
+if( startAt < 0 )
+  return -1;
+
+const Int32 max = last;
+
+if( startAt >= max )
+  return -1;
+
+for( Int32 count = startAt; count < max;
+                                       count++ )
+  {
+  Uint16 val = cArray.getVal( count );
+  if( val == delimit )
+    return count;
+
+  toGet.appendU8( val & 0x7F );
   }
 
 return -1;

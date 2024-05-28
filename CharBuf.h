@@ -32,7 +32,7 @@ class CharBuf
   public:
   CharBuf( void )
     {
-    setSize( 64 * 1024 );
+    setSize( 2 );
     }
 
   CharBuf( const char* pStr );
